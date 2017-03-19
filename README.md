@@ -8,9 +8,7 @@
 
 * Copy your package.json and client and server folders to this project folder
 
-* Make sure this project folder has a `.gitignore` file with an entry
-
-for `node_modules`
+* Make sure this project folder has a `.gitignore` file with an entry for `node_modules`
 
 * Run npm install on this project to install all your dependencies you need
 
