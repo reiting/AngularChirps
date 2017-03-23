@@ -16,7 +16,7 @@ var app = angular.module('Chirper', ['ngRoute'])
                 type: 'GET',
                 url: 'http://localhost:3000/api/chirps',
             }).then(function(alltheChirps) {
-                // console.log(alltheChirps);
+                console.log(alltheChirps);
                 $scope.chirps = alltheChirps.data;
             })
         }
@@ -35,6 +35,10 @@ var app = angular.module('Chirper', ['ngRoute'])
         }
         $scope.getUsers();
     }]);
+
+
+
+
 
 
 app.config(['$routeProvider', function ($routeProvider) {

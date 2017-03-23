@@ -15,16 +15,18 @@
         </div>
         <div class="row">
             <select id="user-selector">
+                <option ng-repeat="user in users" value="{{ user.ID }}" >
+                    {{ user.Name }}
+                </option>
             </select>
         </div>
     </div>
-    <div ng-repeat="chirp in chirps">
-        Message: {{ chirp.message }}, Users: {{ chirp.UserID }}
+    <div ng-repeat="chirp in chirps" class="results" >
+        Message: {{ chirp.message }}, Users: {{ chirp.UserName }}
     </div>
 
 
-<!--<div class="body-container">
-
+<!--
     <div class="content-container">
         <div class="inputs-container">
             <input id="chirp" placeholder="What's happening?" type="text" ng-model="newChirp.message">
@@ -32,7 +34,7 @@
 
         <div class="selector-container">
             <select class="selectpicker" id="user-selector" ng-model="newChirp.user">
-                <option value="" disabled selected>Select User</option>
+                <option value="" disabled selected>Select User</option>-->
                 <!--<option value="{{user.id}}" ng-repeat="user in users"> {{user.name}}</option>
             </select>
         </div>
