@@ -18,4 +18,32 @@
             </select>
         </div>
     </div>
-    <div id="posts"></div>
+    <div ng-repeat="chirp in chirps">
+        Message: {{ chirp.message }}, Users: {{ chirp.UserID }}
+    </div>
+
+
+<!--<div class="body-container">
+
+    <div class="content-container">
+        <div class="inputs-container">
+            <input id="chirp" placeholder="What's happening?" type="text" ng-model="newChirp.message">
+        </div>
+
+        <div class="selector-container">
+            <select class="selectpicker" id="user-selector" ng-model="newChirp.user">
+                <option value="" disabled selected>Select User</option>
+                <!--<option value="{{user.id}}" ng-repeat="user in users"> {{user.name}}</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <button id="submit" ng-click="sendChirp()"> Chirp!</button>
+        </div>
+
+        <div class="chirp-container">
+            <div ng-repeat="chirp in chirps" ng-click="goToSingleChirp(chirp.id)"> @{{ chirp.name }}: {{ chirp.message }} || {{ chirp.timestamp | date:'short'}}</div>
+        </div>
+    </div>
+
+</div>-->

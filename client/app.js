@@ -1,32 +1,40 @@
 var app = angular.module('Chirper', ['ngRoute']) 
-
+    //controller for welcome page
     app.controller('WelcomeController', ['$scope', '$location',
         function ($scope, $location) {
-            
+            //makes button on welcome page go to list.html
             $scope.goToList = function() {
                 $location.path('/chirps');
             }
         }]);
-    
-    app.controller('ListController', ['$scope', '$location', 
-        function ($scope, $location) {
-
-        $scope.getTweet= function() {
-            $.ajax({
+    //controller for list page
+    app.controller('ListController', ['$scope', '$location', '$http', 
+        function ($scope, $location, $http) {
+        //get request for chirps
+        $scope.getChirps= function() {
+            $http({
                 type: 'GET',
                 url: 'http://localhost:3000/api/chirps',
-                contentType: 'application/json',
-            }).then(function(alltheTweets) {
-                $scope.tweets = alltheTweets;
+            }).then(function(alltheChirps) {
+                // console.log(alltheChirps);
+                $scope.chirps = alltheChirps.data;
             })
         }
+        //calls the function so it will run
+        $scope.getChirps();
 
-        $scope.getTweet();
-
-        
+        //get request to get all users for drop down
+        $scope.getUsers= function() {
+            $http({
+                type: 'GET',
+                url: 'http://localhost:3000/api/users',
+            }).then(function(alltheUsers) {
+                console.log(alltheUsers);
+                $scope.users = alltheUsers.data;
+            })
+        }
+        $scope.getUsers();
     }]);
-    
-
 
 
 app.config(['$routeProvider', function ($routeProvider) {
