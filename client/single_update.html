@@ -5,6 +5,6 @@
         </div>
         <div id="chirpContainer"></div>
     </div>
-    <h5 id="usr"></h5>
-    <input ng-model="text" id="msg">
-    <button id="updatebtn">Update</button>
+    <h5 id="usr">{{ singlechirp.UserName }}</h5>
+    <input ng-model="singlechirp.message" id="msg">
+    <button ng-click="updateChirp(singlechirp.id)" id="updatebtn">Update</button>

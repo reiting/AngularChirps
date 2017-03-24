@@ -8,8 +8,8 @@ app.controller('WelcomeController', ['$scope', '$location',
         }
     }]);
 //controller for list page
-app.controller('ListController', ['$scope', '$location', '$http',
-    function ($scope, $location, $http) {
+app.controller('ListController', ['$scope', '$location', '$http', '$window',
+    function ($scope, $location, $http, $window) {
         //get request for chirps
         $scope.getChirps = function () {
             $http({
@@ -36,6 +36,24 @@ app.controller('ListController', ['$scope', '$location', '$http',
         }
         $scope.getUsers();
 
+    $scope.sendChirp = function() {
+
+        var newChirp = {
+            message: $scope.currentChirp,
+            UserID: $("#user-selector").val()
+        }
+        console.log(newChirp);
+        $http({
+            method: "POST",
+            url: 'http://localhost:3000/api/chirps',
+            contentType: 'application/json',
+            data: JSON.stringify(newChirp)
+        })
+            .then(function (success) {
+                $scope.getChirps();
+            })
+    
+    };
 
         $scope.goToSingle = function (id) {
             $location.path('/chirps/' + id);
@@ -45,7 +63,6 @@ app.controller('ListController', ['$scope', '$location', '$http',
 app.controller('ViewController', ['$scope', '$routeParams', '$http', '$location',
     function ($scope, $routeParams, $http, $location) {
         var id = $routeParams;
-        // console.log(id);
         $http({
             method: 'GET',
             url: 'http://localhost:3000/api/chirps/' + id.id,
@@ -59,21 +76,18 @@ app.controller('ViewController', ['$scope', '$routeParams', '$http', '$location'
         }
 
         $scope.deleteChirp = function () {
-        $http({
-            method: 'DELETE',
-            url: 'http://localhost:3000/api/chirps/' + id.id
-        }).then(function (success) {
-            // console.log(success);
-            $location.url('/chirps');
-        })
+            $http({
+                method: 'DELETE',
+                url: 'http://localhost:3000/api/chirps/' + id.id
+            }).then(function (success) {
+                $location.url('/chirps');
+            })
         }
     }]);
 
-app.controller('UpdateController', ['$scope', '$routeParams', '$http',
-    function ($scope, $routeParams, $http) {
-        var id =  $routeParams.id;
-        console.log($routeParams.id);
-
+app.controller('UpdateController', ['$scope', '$routeParams', '$http', '$location',
+    function ($scope, $routeParams, $http, $location) {
+        var id = $routeParams.id;
         $http({
             method: 'GET',
             url: 'http://localhost:3000/api/chirps/' + id,
@@ -82,6 +96,22 @@ app.controller('UpdateController', ['$scope', '$routeParams', '$http',
             $scope.singlechirp = singleChirp.data;
         })
 
+        $scope.updateChirp = function (id) {
+            var updatedChirp = {
+                message: $("#msg").val(),
+                id: id
+            }
+            console.log(updatedChirp);
+            $http({
+                method: "PUT",
+                url: "http://localhost:3000/api/chirps/" + id,
+                contentType: 'application/json',
+                data: JSON.stringify(updatedChirp)
+            }).then(function (success) {
+                console.log(success);
+                $location.path('/chirps');
+            })
+        }
 
     }]);
 
