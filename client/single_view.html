@@ -1,11 +1,13 @@
-
-    <div class="container">
-        <div class="row">
-            <h1 id="title">Welcome to Chirper!</h1>
-        </div>
-        <div id="chirpContainer"></div>
+<div class="container">
+    <div class="row">
+        <h1 id="title">Welcome to Chirper!</h1>
     </div>
-    <div class="btn-container">
-        <a id="edit" href="#"><button id="editbtn" class="btn">Edit</button></a>
-        <button id="delbtn" class="btn">Delete</button>
+    <div class="results">
+        <h3 ng-bind="singlechirp.UserName"></h3>
+        <h4 ng-bind="singlechirp.message"></h4>
     </div>
+</div>
+<div class="btn-container">
+    <button ng-click="goToUpdate()" id="editbtn" class="btn">Edit</button>
+    <button ng-click="deleteChirp()" id="delbtn" class="btn">Delete</button>
+</div>
