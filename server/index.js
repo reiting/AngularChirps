@@ -6,8 +6,8 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
-    user: 'rachel',
-    password: "Byebyeoz3",
+    user: '',
+    password: "",
     database: 'Chirper'
 });
 
